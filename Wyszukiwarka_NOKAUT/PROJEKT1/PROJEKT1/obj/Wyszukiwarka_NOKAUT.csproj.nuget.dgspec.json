@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\Desktop\\STUDIA\\ROK3\\SEM6\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj": {}
+    "C:\\Users\\admin\\Source\\Repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\Desktop\\STUDIA\\ROK3\\SEM6\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj": {
+    "C:\\Users\\admin\\Source\\Repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Desktop\\STUDIA\\ROK3\\SEM6\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\Source\\Repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj",
         "projectName": "Wyszukiwarka_NOKAUT",
-        "projectPath": "C:\\Users\\admin\\Desktop\\STUDIA\\ROK3\\SEM6\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj",
+        "projectPath": "C:\\Users\\admin\\Source\\Repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Desktop\\STUDIA\\ROK3\\SEM6\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\obj\\",
+        "outputPath": "C:\\Users\\admin\\Source\\Repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,10 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.59, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
