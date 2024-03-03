@@ -1,5 +1,19 @@
+using Microsoft.EntityFrameworkCore;
+
 namespace PROJEKT1.Models
 {
+    public class AppDbContext : Microsoft.EntityFrameworkCore.DbContext
+    {
+        public DbSet<Product> Products { get; set; }
+
+         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+         {
+             // Skonfiguruj po³¹czenie do swojej bazy danych MSSQL
+             string connectionString = GetConfig.ConnectionString;
+             optionsBuilder.UseSqlServer(connectionString);
+         }
+    }
+
     public class Product
     {
         public int ID { get; set; }

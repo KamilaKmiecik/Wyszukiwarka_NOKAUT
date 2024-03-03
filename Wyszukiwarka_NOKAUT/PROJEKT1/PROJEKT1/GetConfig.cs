@@ -25,5 +25,7 @@
 
         public static string Pass => GetData("Pass");
 
-        }
+        public static string ConnectionString => GetData("ConnectionString");
+
+    }
     }
