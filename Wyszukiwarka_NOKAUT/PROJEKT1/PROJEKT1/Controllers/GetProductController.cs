@@ -21,7 +21,7 @@ namespace PROJEKT1.Controllers
         [HttpGet(Name = "GetProduct")]
         public List<Product> Get()
         {
-            //GetAndParseWebsite("https://www.nokaut.pl/produkt:fml.html", _logger);
+            GetAndParseWebsite("https://www.nokaut.pl/produkt:rower.html", _logger);
             return ParseProducts("https://www.nokaut.pl/produkt:rower.html");
         }
         static List<HtmlNode> FindNodesByClass(HtmlNode parentNode, string targetClass)
@@ -129,9 +129,9 @@ namespace PROJEKT1.Controllers
 
                                 if (!string.IsNullOrEmpty(offerName) && !string.IsNullOrEmpty(offerURL) && !string.IsNullOrEmpty(offerPrice))
                                 {
-                                    if (decimal.TryParse(priceString.Replace(" z³", "").Trim(), out decimal price))
+                                    if (decimal.TryParse(offerPrice.Replace(" z³", "").Trim(), out decimal price))
                                     {
-                                        products.Add(new Product(i, name, productUrl, price, imageUrl));
+                                        products.Add(new Product(i, offerPrice, offerURL, price, imageUrl));
                                         i++;
                                     }
                                 }
