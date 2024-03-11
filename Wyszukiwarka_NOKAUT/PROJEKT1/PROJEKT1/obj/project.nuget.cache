@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "c1ReSONMNfz+wd2NIFdVjvzV0yNRZBoBJbMUq3JIzgkrdWOBrd9IoguKu+H0DCT58Hmw22U0H6Y7fFYdnU/6ag==",
+  "dgSpecHash": "1TgJxaQJavOqZc4mJDZ/B9Jx65QOOsEhhWGcYfHHs9ptq+Qvslev1Gv6V3y586sH2hzfXUFatRyc7P2lRyKQ2A==",
   "success": true,
-  "projectFilePath": "C:\\Users\\admin\\Source\\Repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj",
+  "projectFilePath": "C:\\Users\\admin\\source\\repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\admin\\.nuget\\packages\\htmlagilitypack\\1.11.59\\htmlagilitypack.1.11.59.nupkg.sha512",
     "C:\\Users\\admin\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

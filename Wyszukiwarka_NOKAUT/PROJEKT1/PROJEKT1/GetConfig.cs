@@ -1,6 +1,5 @@
 ﻿namespace PROJEKT1
 {
-    //Wykorzystywane do wyviągania z JSONa nazw i folderów - szybki config ze strony np. serwisanta
     internal class GetConfig
     {
         private static string config = "Config";

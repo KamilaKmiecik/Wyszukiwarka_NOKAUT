@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\Wyszukiwarka_NOKAUT.props" />
+</Project>

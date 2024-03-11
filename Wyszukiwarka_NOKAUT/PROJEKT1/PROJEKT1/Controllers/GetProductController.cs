@@ -2,6 +2,7 @@ using HtmlAgilityPack;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using PROJEKT1.Models;
+using System;
 
 namespace PROJEKT1.Controllers
 {
@@ -18,10 +19,28 @@ namespace PROJEKT1.Controllers
         }
 
         [HttpGet(Name = "GetProduct")]
-        public Product Get()
+        public List<Product> Get()
         {
-            return new Product(1, "test", "https://www.youtube.com/watch?v=dQw4w9WgXcQ", 123.4m);
+            //GetAndParseWebsite("https://www.nokaut.pl/produkt:fml.html", _logger);
+            return ParseProducts("https://www.nokaut.pl/produkt:rower.html");
         }
+        static List<HtmlNode> FindNodesByClass(HtmlNode parentNode, string targetClass)
+        {
+            List<HtmlNode> matchingNodes = new List<HtmlNode>();
+
+            if (parentNode.Attributes["class"]?.Value == targetClass)
+            {
+                matchingNodes.Add(parentNode);
+            }
+
+            foreach (var childNode in parentNode.ChildNodes)
+            {
+                matchingNodes.AddRange(FindNodesByClass(childNode, targetClass));
+            }
+
+            return matchingNodes;
+        }
+
 
         static async void GetAndParseWebsite(string url, ILogger logger)
         {
@@ -34,7 +53,8 @@ namespace PROJEKT1.Controllers
                     HtmlDocument htmlDocument = new HtmlDocument();
                     htmlDocument.LoadHtml(htmlContent);
 
-                    var productItems = htmlDocument.DocumentNode.SelectNodes("//div[@class='ProductItem']");
+                var productItems = FindNodesByClass(htmlDocument.DocumentNode, "//div[@class='ProductItem']");
+                    productItems = FindNodesByClass(htmlDocument.DocumentNode, "ProductItem");
 
                     if (productItems != null)
                     {
@@ -55,32 +75,74 @@ namespace PROJEKT1.Controllers
             }
         }
 
-        public static List<Product> ParseProducts(string htmlContent)
+        public static List<Product> ParseProducts(string url)
         {
-            var products = new List<Product>();
+            HtmlWeb web = new HtmlWeb();
+            HtmlDocument doc = web.Load(url);
 
-            var htmlDocument = new HtmlDocument();
-            htmlDocument.LoadHtml(htmlContent);
+            List<Product> products = new List<Product>();
+            int i = 1;
 
-            var productNodes = htmlDocument.DocumentNode.SelectNodes("//div[contains(@class, 'ProductItem')]");
-
+            HtmlNodeCollection productNodes = doc.DocumentNode.SelectNodes("//div[contains(@class, 'ProductItem')]");
             if (productNodes != null)
             {
-                int i = 1;
-                foreach (var productNode in productNodes)
+                foreach (HtmlNode productNode in productNodes)
                 {
                     string name = productNode.SelectSingleNode(".//span[@class='Title']/a")?.InnerText?.Trim();
-                    string url = productNode.SelectSingleNode(".//span[@class='Title']/a")?.GetAttributeValue("href", "");
+                    string productUrl = productNode.SelectSingleNode(".//span[@class='Title']/a")?.GetAttributeValue("href", "");
                     string priceString = productNode.SelectSingleNode(".//p[@class='Price']")?.InnerText?.Trim();
-
-                    if (decimal.TryParse(priceString?.Replace(" z³", ""), out decimal price))
+                    string imageUrl = productNode.SelectSingleNode(".//img")?.GetAttributeValue("src", "");
+                    if (string.IsNullOrEmpty(imageUrl))
                     {
-                        products.Add(new Product(i, name, url, price));
-                        i++;
+                        imageUrl = productNode.SelectSingleNode(".//img")?.GetAttributeValue("data-src", "");
                     }
-                }
-            }
 
+                    if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(productUrl) && !string.IsNullOrEmpty(priceString))
+                    {
+                        if (decimal.TryParse(priceString.Replace(" z³", "").Trim(), out decimal price))
+                        {
+                            products.Add(new Product(i, name, productUrl, price, imageUrl));
+                            i++;
+                        }
+                    }
+
+                    if(string.IsNullOrEmpty(name))
+                    {
+                        string html = productNode.SelectSingleNode(".//span[@class='Title Multi']/a")?.GetAttributeValue("href", "");
+                        HtmlDocument document = web.Load(html);
+
+                        HtmlNode offersNode = document.DocumentNode.SelectNodes("//div[contains(@class, 'ProductInfo')]").FirstOrDefault();
+                        string offerName = offersNode.SelectSingleNode(".//h2[@class='Title']")?.InnerText?.Trim();
+
+                        HtmlNodeCollection offersNodes = document.DocumentNode.SelectNodes("//div[contains(@class, 'PromoOffer')]");
+                        if (offersNodes != null)
+                        {
+                            foreach (HtmlNode offerNode in offersNodes)
+                            {
+                                string offerPrice = offerNode.SelectSingleNode(".//p[@class='Price']")?.InnerText?.Trim();
+
+                                string offerURL = offerNode.SelectSingleNode("//a[@class='Button']")?.GetAttributeValue("href", "");
+                                if (string.IsNullOrEmpty(offerURL))
+                                {
+                                    offerURL = offerNode.SelectSingleNode(".//img")?.GetAttributeValue("data-src", "");
+                                }
+
+                                if (!string.IsNullOrEmpty(offerName) && !string.IsNullOrEmpty(offerURL) && !string.IsNullOrEmpty(offerPrice))
+                                {
+                                    if (decimal.TryParse(priceString.Replace(" z³", "").Trim(), out decimal price))
+                                    {
+                                        products.Add(new Product(i, name, productUrl, price, imageUrl));
+                                        i++;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+
+                }
+               
+            }
             return products;
         }
     }

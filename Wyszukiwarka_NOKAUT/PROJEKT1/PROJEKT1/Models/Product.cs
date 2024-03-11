@@ -22,14 +22,17 @@ namespace PROJEKT1.Models
 
         public string URL { get; set; }
 
+        public string imageUrl { get; set; }
+
         public PriceCy Price { get; set; }
 
-        public Product(int _id, string _name, string _url, decimal _priceValue)
+        public Product(int _id, string _name, string _url, decimal _priceValue, string _imageUrl)
         {
             ID = _id;
             Name = _name;
             URL = _url;
             Price = new PriceCy(_priceValue);
+            imageUrl = _imageUrl;
         }
 
         public Product()

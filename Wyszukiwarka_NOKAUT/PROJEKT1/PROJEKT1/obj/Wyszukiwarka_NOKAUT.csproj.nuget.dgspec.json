@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\admin\\Source\\Repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj": {}
+    "C:\\Users\\admin\\source\\repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj": {}
   },
   "projects": {
-    "C:\\Users\\admin\\Source\\Repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj": {
+    "C:\\Users\\admin\\source\\repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\admin\\Source\\Repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj",
+        "projectUniqueName": "C:\\Users\\admin\\source\\repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj",
         "projectName": "Wyszukiwarka_NOKAUT",
-        "projectPath": "C:\\Users\\admin\\Source\\Repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj",
+        "projectPath": "C:\\Users\\admin\\source\\repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj",
         "packagesPath": "C:\\Users\\admin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\admin\\Source\\Repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\obj\\",
+        "outputPath": "C:\\Users\\admin\\source\\repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -34,6 +34,11 @@
           "warnAsError": [
             "NU1605"
           ]
+        },
+        "restoreAuditProperties": {
+          "enableAudit": "true",
+          "auditLevel": "low",
+          "auditMode": "direct"
         }
       },
       "frameworks": {
@@ -76,7 +81,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }
