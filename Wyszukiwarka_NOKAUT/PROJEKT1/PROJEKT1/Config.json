@@ -5,7 +5,7 @@
     "DatabaseName": "2306.0.0",
     "User": "Administrator",
     "Pass": "123",
-    "ConnectionString" :  ""
+    "ConnectionString": ""
   }
 
 

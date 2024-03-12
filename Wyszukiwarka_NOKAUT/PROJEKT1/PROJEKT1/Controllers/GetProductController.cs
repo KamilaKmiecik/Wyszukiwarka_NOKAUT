@@ -106,7 +106,7 @@ namespace PROJEKT1.Controllers
                         }
                     }
 
-                    if(string.IsNullOrEmpty(name))
+                    if (string.IsNullOrEmpty(name))
                     {
                         string html = productNode.SelectSingleNode(".//span[@class='Title Multi']/a")?.GetAttributeValue("href", "");
                         HtmlDocument document = web.Load(html);
@@ -131,7 +131,7 @@ namespace PROJEKT1.Controllers
                                 {
                                     if (decimal.TryParse(offerPrice.Replace(" z³", "").Trim(), out decimal price))
                                     {
-                                        products.Add(new Product(i, offerPrice, offerURL, price, imageUrl));
+                                        products.Add(new Product(i, offerName, offerURL, price, imageUrl));
                                         i++;
                                     }
                                 }
@@ -141,11 +141,9 @@ namespace PROJEKT1.Controllers
 
 
                 }
-               
+
             }
             return products;
         }
     }
-
-
 }
