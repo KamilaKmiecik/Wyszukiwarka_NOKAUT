@@ -1,9 +1,9 @@
 using HtmlAgilityPack;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 using PROJEKT1.Models;
 using System;
-
 namespace PROJEKT1.Controllers
 {
     [ApiController]
@@ -143,7 +143,29 @@ namespace PROJEKT1.Controllers
                 }
 
             }
+            SaveToDatabase(products, GetConfig.ConnectionString);
             return products;
+        }
+
+        static void SaveToDatabase(List<Product> products, string connectionString)
+        {
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                foreach (Product product in products)
+                {
+                    string insertQuery = "INSERT INTO Products (Name, URL, Price, ImageURL) VALUES (@Name, @URL, @Price, @ImageURL)";
+                    using (SqlCommand command = new SqlCommand(insertQuery, connection))
+                    {
+                        command.Parameters.AddWithValue("@Name", product.Name);
+                        command.Parameters.AddWithValue("@URL", product.URL);
+                        command.Parameters.AddWithValue("@Price", product.Price.Value);
+                        command.Parameters.AddWithValue("@ImageURL", product.imageUrl);
+                        command.ExecuteNonQuery();
+                    }
+                }
+            }
         }
     }
 }

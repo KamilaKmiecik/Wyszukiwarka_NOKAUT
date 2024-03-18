@@ -5,7 +5,7 @@
     "DatabaseName": "2306.0.0",
     "User": "Administrator",
     "Pass": "123",
-    "ConnectionString": "Data Source=DESKTOP-OU9MOIM;Initial Catalog=Nokaut;Integrated Security=True; Trust Server Certificate=False;Connect Timeout=30;Encrypt=False;Application Intent=ReadWrite; Multi Subnet Failover=False"
+    "ConnectionString": "Data Source=DESKTOP-OU9MOIM;Initial Catalog=Nokaut;Integrated Security=True; Trust Server Certificate=False; Connect Timeout=30;Encrypt=False;Application Intent=ReadWrite; Multi Subnet Failover=False"
   }
 
 

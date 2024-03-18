@@ -8,7 +8,6 @@ namespace PROJEKT1.Models
 
          protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
          {
-             // Skonfiguruj po³¹czenie do swojej bazy danych MSSQL
              string connectionString = GetConfig.ConnectionString;
              optionsBuilder.UseSqlServer(connectionString);
          }
