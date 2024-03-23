@@ -2,16 +2,16 @@ using Microsoft.EntityFrameworkCore;
 
 namespace PROJEKT1.Models
 {
-    public class AppDbContext : Microsoft.EntityFrameworkCore.DbContext
-    {
-        public DbSet<Product> Products { get; set; }
+    //public class AppDbContext : Microsoft.EntityFrameworkCore.DbContext
+    //{
+    //    public DbSet<Product> Products { get; set; }
 
-         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-         {
-             string connectionString = GetConfig.ConnectionString;
-             optionsBuilder.UseSqlServer(connectionString);
-         }
-    }
+    //     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    //     {
+    //         string connectionString = GetConfig.ConnectionString;
+    //         optionsBuilder.UseSqlServer(connectionString);
+    //     }
+    //}
 
     public class Product
     {
@@ -25,13 +25,16 @@ namespace PROJEKT1.Models
 
         public PriceCy Price { get; set; }
 
-        public Product(int _id, string _name, string _url, decimal _priceValue, string _imageUrl)
+        public string typeProduct { get; set; }
+
+        public Product(int _id, string _name, string _url, decimal _priceValue, string _imageUrl, string _typeProduct)
         {
             ID = _id;
             Name = _name;
             URL = _url;
             Price = new PriceCy(_priceValue);
             imageUrl = _imageUrl;
+            typeProduct = _typeProduct;
         }
 
         public Product()

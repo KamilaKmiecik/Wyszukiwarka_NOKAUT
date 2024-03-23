@@ -4,13 +4,14 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Extensions.Logging;
 using PROJEKT1.Models;
 using System;
+using System.Net.Http;
+
 namespace PROJEKT1.Controllers
 {
     [ApiController]
     [Route("[controller]")]
     public class GetProductController : ControllerBase
     {
-
         private readonly ILogger<GetProductController> _logger;
 
         public GetProductController(ILogger<GetProductController> logger)
@@ -18,12 +19,14 @@ namespace PROJEKT1.Controllers
             _logger = logger;
         }
 
-        [HttpGet(Name = "GetProduct")]
-        public List<Product> Get()
+        [HttpGet("products/{productType}")]
+        public List<Product> Get(string productType)
         {
-            GetAndParseWebsite("https://www.nokaut.pl/produkt:rower.html", _logger);
-            return ParseProducts("https://www.nokaut.pl/produkt:rower.html");
+            string url = $"https://www.nokaut.pl/produkt:{productType}.html";
+            GetAndParseWebsite(url, _logger);
+            return ParseProducts(url);
         }
+
         static List<HtmlNode> FindNodesByClass(HtmlNode parentNode, string targetClass)
         {
             List<HtmlNode> matchingNodes = new List<HtmlNode>();
@@ -88,6 +91,7 @@ namespace PROJEKT1.Controllers
             {
                 foreach (HtmlNode productNode in productNodes)
                 {
+                    string typeProduct = Path.GetFileNameWithoutExtension(url.Split(':').Last());
                     string name = productNode.SelectSingleNode(".//span[@class='Title']/a")?.InnerText?.Trim();
                     string productUrl = productNode.SelectSingleNode(".//span[@class='Title']/a")?.GetAttributeValue("href", "");
                     string priceString = productNode.SelectSingleNode(".//p[@class='Price']")?.InnerText?.Trim();
@@ -96,12 +100,12 @@ namespace PROJEKT1.Controllers
                     {
                         imageUrl = productNode.SelectSingleNode(".//img")?.GetAttributeValue("data-src", "");
                     }
-
+                    
                     if (!string.IsNullOrEmpty(name) && !string.IsNullOrEmpty(productUrl) && !string.IsNullOrEmpty(priceString))
                     {
                         if (decimal.TryParse(priceString.Replace(" z³", "").Trim(), out decimal price))
                         {
-                            products.Add(new Product(i, name, productUrl, price, imageUrl));
+                            products.Add(new Product(i, name, productUrl, price, imageUrl, typeProduct));
                             i++;
                         }
                     }
@@ -131,7 +135,7 @@ namespace PROJEKT1.Controllers
                                 {
                                     if (decimal.TryParse(offerPrice.Replace(" z³", "").Trim(), out decimal price))
                                     {
-                                        products.Add(new Product(i, offerName, offerURL, price, imageUrl));
+                                        products.Add(new Product(i, offerName, offerURL, price, imageUrl, typeProduct));
                                         i++;
                                     }
                                 }
@@ -143,29 +147,55 @@ namespace PROJEKT1.Controllers
                 }
 
             }
-            SaveToDatabase(products, GetConfig.ConnectionString);
+            
             return products;
         }
 
-        static void SaveToDatabase(List<Product> products, string connectionString)
-        {
+        //static void DatabaseOperations(List<Product> products, string connectionString)
+        //{
+        //    //DatabaseOperations(products, GetConfig.ConnectionString);
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                foreach (Product product in products)
-                {
-                    string insertQuery = "INSERT INTO Products (Name, URL, Price, ImageURL) VALUES (@Name, @URL, @Price, @ImageURL)";
-                    using (SqlCommand command = new SqlCommand(insertQuery, connection))
-                    {
-                        command.Parameters.AddWithValue("@Name", product.Name);
-                        command.Parameters.AddWithValue("@URL", product.URL);
-                        command.Parameters.AddWithValue("@Price", product.Price.Value);
-                        command.Parameters.AddWithValue("@ImageURL", product.imageUrl);
-                        command.ExecuteNonQuery();
-                    }
-                }
-            }
-        }
+        //    using (SqlConnection connection = new SqlConnection(connectionString))
+        //    {
+        //        connection.Open();
+        //        SqlTransaction transaction = connection.BeginTransaction();
+
+        //        try
+        //        {
+        //            string deleteQuery = "DELETE FROM Products WHERE TypeProduct = @TypeProduct";
+        //            using (SqlCommand deleteCommand = new SqlCommand(deleteQuery, connection, transaction))
+        //            {
+        //                deleteCommand.Parameters.AddWithValue("@TypeProduct", products.FirstOrDefault()?.typeProduct);
+        //                deleteCommand.ExecuteNonQuery();
+        //            }
+
+        //            foreach (Product product in products)
+        //            {
+        //                string insertQuery = "INSERT INTO Products (Name, URL, Price, ImageURL, TypeProduct) VALUES (@Name, @URL, @Price, @ImageURL, @TypeProduct)";
+        //                using (SqlCommand command = new SqlCommand(insertQuery, connection, transaction))
+        //                {
+        //                    command.Parameters.AddWithValue("@Name", product.Name);
+        //                    command.Parameters.AddWithValue("@URL", product.URL);
+        //                    command.Parameters.AddWithValue("@Price", product.Price.Value);
+        //                    command.Parameters.AddWithValue("@ImageURL", product.imageUrl);
+        //                    command.Parameters.AddWithValue("@TypeProduct", product.typeProduct);
+        //                    command.ExecuteNonQuery();
+        //                }
+        //            }
+
+        //            transaction.Commit();
+        //        }
+        //        catch (Exception ex)
+        //        {
+        //            transaction.Rollback();
+        //            Console.WriteLine("An error occurred while saving to the database: " + ex.Message);
+        //        }
+        //        finally
+        //        {
+        //            connection.Close();
+        //        }
+        //    }
+        //}
     }
+
 }

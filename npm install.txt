@@ -1,0 +1,3 @@
+w folderze design_strony
+
+npm install express axios mssql https node-cron

@@ -1,0 +1,11 @@
+{
+    "user": "DESKTOP-OU9MOIM\\Dawid",
+    "password": "",
+    "server": "localhost",
+    "database": "Nokaut",
+    "options": {
+      "encrypt": true
+      "trustServerCertificate": false 
+    }
+  }
+  
