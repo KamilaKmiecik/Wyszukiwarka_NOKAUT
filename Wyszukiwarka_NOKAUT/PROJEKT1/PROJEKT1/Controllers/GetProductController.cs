@@ -27,7 +27,7 @@ namespace PROJEKT1.Controllers
             return ParseProducts(url);
         }
 
-        static List<HtmlNode> FindNodesByClass(HtmlNode parentNode, string targetClass)
+        public static List<HtmlNode> FindNodesByClass(HtmlNode parentNode, string targetClass)
         {
             List<HtmlNode> matchingNodes = new List<HtmlNode>();
 
@@ -45,7 +45,7 @@ namespace PROJEKT1.Controllers
         }
 
 
-        static async void GetAndParseWebsite(string url, ILogger logger)
+         public  static async void GetAndParseWebsite(string url, ILogger logger)
         {
             using (HttpClient client = new HttpClient())
             {

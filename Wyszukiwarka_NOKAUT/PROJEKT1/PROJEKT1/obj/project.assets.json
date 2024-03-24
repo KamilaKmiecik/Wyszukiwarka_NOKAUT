@@ -909,6 +909,19 @@
           }
         }
       },
+      "xunit.assert/2.7.0": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/xunit.assert.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net6.0/xunit.assert.dll": {
+            "related": ".xml"
+          }
+        }
+      },
       "xunit.core/2.7.0": {
         "type": "package",
         "dependencies": {
@@ -954,6 +967,18 @@
           "lib/netstandard1.1/xunit.execution.dotnet.dll": {
             "related": ".xml"
           }
+        }
+      },
+      "xunit.runner.visualstudio/2.5.7": {
+        "type": "package",
+        "compile": {
+          "lib/net6.0/_._": {}
+        },
+        "runtime": {
+          "lib/net6.0/_._": {}
+        },
+        "build": {
+          "build/net6.0/xunit.runner.visualstudio.props": {}
         }
       }
     }
@@ -2600,6 +2625,23 @@
         "xunit.abstractions.nuspec"
       ]
     },
+    "xunit.assert/2.7.0": {
+      "sha512": "CCTs3bUhmIS4tDwK6Cn/IiabG3RhYzdf65eIkO7u9/grKoN9MrN780LzVED3E8v+vwmmj7b5TW3/GFuZHPAzWA==",
+      "type": "package",
+      "path": "xunit.assert/2.7.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "_content/README.md",
+        "_content/logo-128-transparent.png",
+        "lib/net6.0/xunit.assert.dll",
+        "lib/net6.0/xunit.assert.xml",
+        "lib/netstandard1.1/xunit.assert.dll",
+        "lib/netstandard1.1/xunit.assert.xml",
+        "xunit.assert.2.7.0.nupkg.sha512",
+        "xunit.assert.nuspec"
+      ]
+    },
     "xunit.core/2.7.0": {
       "sha512": "98tzqYAbtc/p/2Ba455XTNbD12Qoo8kPehjC4oDT46CAsLli5JOCU9hFF2MV3HHWMw/Y3yFUV2Vcukplbs6kuA==",
       "type": "package",
@@ -2653,6 +2695,31 @@
         "xunit.extensibility.execution.2.7.0.nupkg.sha512",
         "xunit.extensibility.execution.nuspec"
       ]
+    },
+    "xunit.runner.visualstudio/2.5.7": {
+      "sha512": "31Rl7dBJriX0DNwZfDp8gqFOPsiM0c9kqpcH/HvNi9vDp+K7Ydf42H7mVIvYT918Ywzn1ymLg1c4DDC6iU754w==",
+      "type": "package",
+      "path": "xunit.runner.visualstudio/2.5.7",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "_content/README.md",
+        "_content/logo-128-transparent.png",
+        "build/net462/xunit.abstractions.dll",
+        "build/net462/xunit.runner.reporters.net452.dll",
+        "build/net462/xunit.runner.utility.net452.dll",
+        "build/net462/xunit.runner.visualstudio.props",
+        "build/net462/xunit.runner.visualstudio.testadapter.dll",
+        "build/net6.0/xunit.abstractions.dll",
+        "build/net6.0/xunit.runner.reporters.netcoreapp10.dll",
+        "build/net6.0/xunit.runner.utility.netcoreapp10.dll",
+        "build/net6.0/xunit.runner.visualstudio.props",
+        "build/net6.0/xunit.runner.visualstudio.testadapter.dll",
+        "lib/net462/_._",
+        "lib/net6.0/_._",
+        "xunit.runner.visualstudio.2.5.7.nupkg.sha512",
+        "xunit.runner.visualstudio.nuspec"
+      ]
     }
   },
   "projectFileDependencyGroups": {
@@ -2662,27 +2729,29 @@
       "Microsoft.EntityFrameworkCore.SqlServer >= 6.0.27",
       "Moq >= 4.20.70",
       "Swashbuckle.AspNetCore >= 6.5.0",
-      "xunit.core >= 2.7.0"
+      "xunit.assert >= 2.7.0",
+      "xunit.core >= 2.7.0",
+      "xunit.runner.visualstudio >= 2.5.7"
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Dawid\\.nuget\\packages\\": {},
+    "C:\\Users\\ozi02\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Dawid\\source\\repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj",
+      "projectUniqueName": "C:\\Users\\ozi02\\Source\\Repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj",
       "projectName": "Wyszukiwarka_NOKAUT",
-      "projectPath": "C:\\Users\\Dawid\\source\\repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj",
-      "packagesPath": "C:\\Users\\Dawid\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Dawid\\source\\repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\obj\\",
+      "projectPath": "C:\\Users\\ozi02\\Source\\Repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\Wyszukiwarka_NOKAUT.csproj",
+      "packagesPath": "C:\\Users\\ozi02\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ozi02\\Source\\Repos\\Wyszukiwarka_NOKAUT\\Wyszukiwarka_NOKAUT\\PROJEKT1\\PROJEKT1\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\Dawid\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ozi02\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -2691,7 +2760,7 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
+        "C:\\Program Files\\dotnet\\sdk\\7.0.302\\Sdks\\Microsoft.NET.Sdk.Web\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -2730,9 +2799,19 @@
             "target": "Package",
             "version": "[6.5.0, )"
           },
+          "xunit.assert": {
+            "target": "Package",
+            "version": "[2.7.0, )"
+          },
           "xunit.core": {
             "target": "Package",
             "version": "[2.7.0, )"
+          },
+          "xunit.runner.visualstudio": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[2.5.7, )"
           }
         },
         "imports": [
@@ -2754,7 +2833,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.302\\RuntimeIdentifierGraph.json"
       }
     }
   }
