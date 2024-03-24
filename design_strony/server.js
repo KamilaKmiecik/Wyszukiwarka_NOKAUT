@@ -26,19 +26,19 @@ process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 const apiUrl = 'https://localhost:44345/GetProduct/products/';
 
+let pool;
+
 async function establishConnection() {
-    try {
-        const pool = await sql.connect(dbConfig);
-        console.log('Connected to MSSQL database.');
-        return pool;
-    } catch (error) {
-        console.error('Error establishing connection to MSSQL database:', error);
-        throw error;
-    }
-}
+  try {
+    pool = await sql.connect(config);
+    console.log('Connected to MSSQL database.');
+  } catch (error) {
+    console.error('Error establishing connection to MSSQL database:', error);
+  }
+};
+establishConnection();
 
 
-//Insert new into database
 async function saveToDatabase(Name, URL, Price, ImageURL, TypeProduct) {
   try {
     const request = pool.request();
@@ -59,15 +59,12 @@ async function saveToDatabase(Name, URL, Price, ImageURL, TypeProduct) {
   }
 }
 
-//Delete old from database
 async function deleteFromDatabase(TypeProduct) {
     const request = pool.request();
     const deleteQuery = `DELETE FROM Products WHERE TypeProduct = @TypeProduct`;
     request.input('TypeProduct', sql.NVarChar, TypeProduct);
     await request.query(deleteQuery);
 }
-
-//HTML invoke scraping
 app.post('/productType', async (req, res) => {
     const { productType } = req.body;
     try {
@@ -90,7 +87,7 @@ app.post('/productType', async (req, res) => {
                 const numericPrice = price.value;
                 await saveToDatabase(name, url, numericPrice, imageUrl, typeProduct);
             });
-
+            
             const checkQuery = `SELECT * FROM Products WHERE TypeProduct = @TypeProduct`;
             const result = await request.query(checkQuery);
             res.status(200).json(result.recordset);
@@ -102,7 +99,7 @@ app.post('/productType', async (req, res) => {
 });
 
 
-//Looking for all of the productType in database
+
 async function findAllProductTypes() {
     try {
         const request = pool.request();
@@ -115,7 +112,6 @@ async function findAllProductTypes() {
     }
 }
 
-//Scheduled scraping
 async function scrapeProductsForType(productType) {
     try {
         const response = await axios.get(`${apiUrl}${productType}`);
@@ -131,7 +127,6 @@ async function scrapeProductsForType(productType) {
     }
 }
 
-//Schedule scraping
 async function scheduleScraping() {
     try {
         await establishConnection();
@@ -154,9 +149,7 @@ async function scheduleScraping() {
 }
 
 scheduleScraping();
-await establishConnection();
 
 app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
 });
-
