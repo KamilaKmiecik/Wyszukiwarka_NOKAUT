@@ -1,6 +1,5 @@
 const express = require('express');
 const axios = require('axios');
-const https = require('https');
 const sql = require('mssql');
 const cron = require('node-cron');
 

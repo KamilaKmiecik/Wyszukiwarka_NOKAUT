@@ -1,5 +1,4 @@
 ﻿using HtmlAgilityPack;
-using Moq;
 using PROJEKT1.Controllers;
 using Xunit;
 
